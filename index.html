@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>BeauCode</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./assets/favicon/manifest">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+  </head>
+<body>
+    <!-- header -->
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid container-lg">
+              <a class="navbar-brand" href="/"><img src="./assets/img/logo.png" alt="logo" width="150"></a>
+              <button class="navbar-toggler shadow-none border-0 animated order-1" type="button" data-bs-toggle="collapse" data-bs-target="#headerNav" aria-controls="headerNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="far fa-bars show"></i>
+                <i class="far fa-times hide"></i>
+              </button>
+              <a class="btn theme-btn order-lg-2 ms-auto" href="#">Sign In</a>
+              <div class="collapse navbar-collapse order-lg-1 order-3" id="headerNav">
+                <ul class="navbar-nav ms-lg-auto mb-2 mb-lg-0 order-lg-1">
+                  <li class="nav-item">
+                    <a class="nav-link" href="./menu.html">Menu</a>
+                  </li>                 
+                </ul>
+                <form class="d-flex mx-lg-auto w-50">
+                    <div class="input-group">
+                      <input id="searchBox" class="form-control shadow-none rounded-0 rounded-end-0" type="search" placeholder="What are you looking for?" aria-label="Search">
+                      <button type="submit" class="input-group-text input-group-text-btn rounded-0 rounded-start-0 shadow-none bg-white">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                </form>
+              </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+      <section class="menu-sec py-lg-5 py-4">
+        <div class="container-lg container-fluid">
+          <div class="sec-intro-wrapper">
+            <h1 class="fw-bold text-uppercase text-center">Menu</h1>
+          </div>
+          <div class="cards-wrapper py-4">
+            <ol class="row g-4 ps-0 m-0 justify-content-center" id="cardsMenu">
+              <!-- template will go here -->
+            </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+
+    <!-- footer -->
+    <footer>
+      <p class="text-muted small text-center m-0">© <span id="year">2024</span> <a href="./index.html">BeauCode</a>. All rights reserved.</p>
+    </footer>
+    <div class="progress-wrap shadow">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+        <path fill="#fff" d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919, 307.919; stroke-dashoffset: 179.138;"></path>
+        </svg>
+    </div>
+    <script src="./assets/js/jquery-3.5.0.min.js"></script>
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/backToTop.js"></script>
+    <script src="./assets/js/custom.js"></script>
+    <script src="./assets/data/menuData.js" type="module"></script>
+
+    <script type="module">
+      // getting data from menuData.js
+     import mainDataArr from './assets/data/menuData.js';
+
+      let cardsMenuWrapper = document.getElementById("cardsMenu");
+
+      renderCards();
+      
+      // fn to show loading spinner while content loading
+      function showSpinner(states){
+        if (states===true){
+          cardsMenuWrapper.innerHTML = `<div class="text-center"><img class="img-fluid rounded-circle" src="./assets/css/ajax-loader.gif" width="50" style="mix-blend-mode: darken;"/></div>`
+        } else{
+          cardsMenuWrapper.innerHTML = '';
+        }
+      };
+
+      // fn to render data from mainData.js 
+     async function renderCards(){
+      showSpinner(true);
+      // after loading data spinner state set to false
+      if(mainDataArr){
+        showSpinner(false);
+        await mainDataArr.toReversed().map((data)=>{
+          const {id, img, title, description, link, dayCreated, dateCreated} = data;          
+          const htmlTemplate = `
+          <li class="col-md-12 col-sm-6 col-12">
+            <div class="card overflow-hidden" id="${id ? id : ''}">
+              <div class="row g-0 flex-md-row flex-column-reverse">
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <p class="card-text"><small class="text-muted text-capitalize">${dayCreated ? dayCreated : 'monday'}, ${dateCreated ? dateCreated : 'january 01, 2024'}</small></p>
+                    <h4 class="card-title fw-bold text-capitalize"><a class="link" href="./menu/${link ? link : 'not_found.html'}">${title ? title : 'hi'}</a>
+                    </h4>
+                    <p class="card-text">${description ? description : 'hey'}</p>
+                  </div>
+                  <div class="card-footer bg-transparent border-0">
+                    <a href="./menu/${link ? link : 'not_found.html'}" class="btn theme-btn btn-success">Check now</a>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="img-wrapper">
+                    <a class="link" href="./menu/${link ? link : 'not_found.html'}">
+                      <img src="./assets/img/${img ? img : 'code-dummy-img.jpeg'}" class="img-fluid" alt="${img ? title : 'card image'}">
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          `          
+          cardsMenuWrapper.innerHTML += htmlTemplate;          
+        }) 
+      }else{
+        showSpinner(true);
+      }
+      };
+    
+    // search fn
+      function searchQueryFn(e){
+        e.preventDefault();
+       // UI Element
+        let cardLi = document.querySelectorAll("#cardsMenu li .card");
+
+        // Get Search Query
+        let searchQuery =  searchInput.value.toLowerCase();
+        console.log(searchQuery)
+
+        // Search Compare & Display
+        if(searchQuery){
+          for (let i = 0; i < cardLi.length; i++) {
+            let cardContent = cardLi[i].textContent.toLowerCase();  
+            if (cardContent.includes(searchQuery)) {
+              cardLi[i].style.display = "block";
+            } else {
+              cardLi[i].style.display = "none";
+            }
+            cardsMenuWrapper.innerHTML = `
+            <h3 class="text-center text-capitalize">Result not found</h3>
+          `
+          }
+        }
+      }
+
+    // search box get query
+    const searchInput = document.querySelector("#searchBox");
+    searchInput.addEventListener("keyup", searchQueryFn);
+    </script>
+</body>
+</html>

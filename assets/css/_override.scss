@@ -1,0 +1,79 @@
+//slider fade effect
+
+/* transition duration to control the speed of fade effect */
+
+.carousel-fade .carousel-item {
+    opacity: 0;
+    transition: opacity 0.6s ease-in;
+  }
+  
+  .carousel-fade .carousel-item.active,
+  .carousel-fade .carousel-item-next.carousel-item-left,
+  .carousel-fade .carousel-item-prev.carousel-item-right {
+    opacity: 1;
+    transition: opacity 0.7s ease-out;
+  }
+  
+  .carousel-fade .active.carousel-item-left,
+  .carousel-fade .active.carousel-item-right {
+    opacity: 0;
+  }
+  
+  .carousel-fade .carousel-item-next,
+  .carousel-fade .carousel-item-prev,
+  .carousel-fade .carousel-item.active,
+  .carousel-fade .active.carousel-item-left,
+  .carousel-fade .active.carousel-item-prev {
+    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
+  }
+  
+  // Disable Auto Zoom in Input "Text" tag - Safari on iPhone
+  
+  @media screen and (-webkit-min-device-pixel-ratio: 0) and (max-device-width: 1024px) {
+    select,
+    textarea,
+    input {
+      font-size: 16px !important;
+    }
+  }
+  
+  @supports (-webkit-overflow-scrolling: touch) {
+    select,
+    textarea,
+    input {
+      font-size: 16px !important;
+    }
+  }
+  
+  @supports (-webkit-touch-callout: none) {
+    select,
+    textarea,
+    input {
+      font-size: 16px !important;
+    }
+  }
+  
+  //hide number input arrow
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
+  }
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield !important;
+  }
+  
+
+  .input-group-text{
+    border-color:#ccd0d5;
+    &.input-group-text-btn{
+      &:hover{
+        background: $themeGreen !important;
+        color: $white;
+        border-color: $themeGreen;
+      }
+    }
+  }
