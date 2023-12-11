@@ -76,7 +76,7 @@ main {
     background: linear-gradient(to bottom, rgba($themeGreen, 0.25) 0%, $white 40%);
     background-size: 100% 200%;
     overflow: hidden;
-    height: calc(100vh - 115px);
+    min-height: calc(100vh - 115px);
 }
 
 .menu-sec {

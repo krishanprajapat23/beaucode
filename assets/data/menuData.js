@@ -9,6 +9,16 @@ const mainDataArr = [
     dayCreated: "wednesday",
     dateCreated: "December 06, 2023",
   }, 
+  {
+    id: 2,
+    img: "backtotop.png",
+    title: "Back To Top Button",
+    link: "backToTop.html",
+    description:
+      "This 'Back to Top' link allows users to smoothly scroll back to the top of the page.",
+    dayCreated: "monday",
+    dateCreated: "December 11, 2023",
+  }, 
 ];
 
 export default mainDataArr;
