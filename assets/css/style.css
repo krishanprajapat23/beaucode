@@ -17581,6 +17581,138 @@ main {
     transform: scaleY(1);
   }
 }
+.modal-page .backdrop_popup {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+}
+.modal-page .backdrop_popup.show {
+  opacity: 0.4;
+}
+.modal-page .popup {
+  display: none;
+  position: fixed;
+  z-index: 1060;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+  top: 50%;
+  left: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transform-origin: center;
+  transform: translate(0, -50px);
+  transition: transform 0.3s ease-in-out, opacity 0.4s ease;
+}
+.modal-page .popup .popup-wrapper {
+  transition: transform 0.3s ease-out;
+  position: relative;
+  width: auto;
+  margin: 0.5rem;
+  pointer-events: none;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+@media (min-width: 567px) {
+  .modal-page .popup .popup-wrapper {
+    max-width: 500px;
+    margin: 1.75rem auto;
+  }
+}
+.modal-page .popup .popup-wrapper .popup-content {
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  overflow: hidden;
+  background-color: #fff;
+  border: 1px solid #000;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  border: 1px solid rgba(30, 30, 30, 0.2);
+  border-radius: 0.3rem;
+  outline: 0;
+}
+.modal-page .popup .popup-wrapper .popup-content .popup-header,
+.modal-page .popup .popup-wrapper .popup-content .popup-body,
+.modal-page .popup .popup-wrapper .popup-content .popup-footer {
+  padding: 1.75rem 1.5rem;
+}
+.modal-page .popup .popup-wrapper .popup-content .popup-header {
+  background-color: #26d0ae;
+  color: #fff;
+  border-bottom: 1px solid #1e1e1e;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+}
+.modal-page .popup .popup-wrapper .popup-content .popup-header h5 {
+  margin-bottom: 0;
+}
+.modal-page .popup .popup-wrapper .popup-content .popup-header .popup-close-btn {
+  padding: 0;
+  margin: 0;
+  margin-left: auto;
+  font-size: 14px;
+  display: block;
+  background: #fff;
+  border-radius: 100%;
+  width: 25px;
+  height: 25px;
+  line-height: 14px;
+  color: #f44335;
+  opacity: 1;
+}
+.modal-page .popup .popup-wrapper .popup-content .popup-header .popup-close-btn:hover {
+  opacity: 0.8;
+  color: #f44335;
+}
+.modal-page .popup .popup-wrapper .popup-content p {
+  margin-bottom: 24px;
+}
+.modal-page .popup .popup-wrapper .popup-content .popup-footer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.75rem;
+  border-top: 1px solid #dee2e6;
+}
+.modal-page .popup.show {
+  display: block;
+  opacity: 1;
+  pointer-events: all;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.15s linear;
+}
+.modal-page .popup.show .popup-wrapper {
+  transform: none;
+}
+.modal-page .popup.popup-centered .popup-wrapper {
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - 3.5rem);
+}
+
+/* Add Animation */
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
 /* transition duration to control the speed of fade effect */
 .carousel-fade .carousel-item {
   opacity: 0;

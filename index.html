@@ -46,6 +46,7 @@
         <div class="container-lg container-fluid">
           <div class="sec-intro-wrapper">
             <h1 class="fw-bold text-uppercase text-center">Menu</h1>
+            <h3 class="text-center text-capitalize opacity-0" id="resultDiv">Showing results for <span id="resultName"></span></h3>
           </div>
           <div class="cards-wrapper py-4">
             <ol class="row g-4 ps-0 m-0 justify-content-center" id="cardsMenu">
@@ -78,6 +79,9 @@
      import mainDataArr from './assets/data/menuData.js';
 
       let cardsMenuWrapper = document.getElementById("cardsMenu");
+      let searchInput = document.querySelector("#searchBox");
+      let resultDiv = document.querySelector("#resultDiv");
+      let resultName = document.querySelector("#resultName");
 
       renderCards();
       
@@ -136,29 +140,29 @@
         e.preventDefault();
        // UI Element
         let cardLi = document.querySelectorAll("#cardsMenu li .card");
-
+        let cardContent;
         // Get Search Query
         let searchQuery =  searchInput.value.toLowerCase();
         console.log(searchQuery)
 
         // Search Compare & Display
         if(searchQuery){
+          resultDiv.classList.remove("opacity-0");
+          resultName.innerText = searchQuery;
           for (let i = 0; i < cardLi.length; i++) {
-            let cardContent = cardLi[i].textContent.toLowerCase();  
+            cardContent = cardLi[i].textContent.toLowerCase() || cardLi[i].innerText.toLowerCase();  
             if (cardContent.includes(searchQuery)) {
               cardLi[i].style.display = "block";
             } else {
               cardLi[i].style.display = "none";
             }
-            cardsMenuWrapper.innerHTML = `
-            <h3 class="text-center text-capitalize">Result not found</h3>
-          `
           }
+        } else {
+          resultDiv.classList.add("opacity-0");
         }
       }
 
-    // search box get query
-    const searchInput = document.querySelector("#searchBox");
+    // search box get query    
     searchInput.addEventListener("keyup", searchQueryFn);
     </script>
 </body>

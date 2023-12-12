@@ -19,6 +19,16 @@ const mainDataArr = [
     dayCreated: "monday",
     dateCreated: "December 11, 2023",
   }, 
+  {
+    id: 3,
+    img: "popup.png",
+    title: "Popup",
+    link: "popup_page.html",
+    description:
+      "A Popup is a dialog box/popup window that is displayed on top of the current page.",
+    dayCreated: "tuesday",
+    dateCreated: "December 12, 2023",
+  }, 
 ];
 
 export default mainDataArr;

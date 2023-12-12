@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>BeauCode</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../assets/favicon/manifest">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+  </head>
+<body>
+    <!-- header -->
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid container-lg">
+              <a class="navbar-brand" href="/"><img src="../assets/img/logo.png" alt="logo" width="150"></a>
+              <button class="navbar-toggler shadow-none border-0 animated" type="button" data-bs-toggle="collapse" data-bs-target="#headerNav" aria-controls="headerNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="far fa-bars show"></i>
+                <i class="far fa-times hide"></i>
+              </button>
+              <div class="collapse navbar-collapse" id="headerNav">
+                <ul class="navbar-nav ms-lg-auto mb-2 mb-lg-0 order-lg-1">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Menu</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="btn theme-btn " href="#">Sign In</a>
+                  </li>                  
+                </ul>
+                <form class="d-flex mx-lg-auto w-50">
+                    <div class="input-group">
+                      <input class="form-control shadow-none rounded-0 rounded-end-0" type="search" placeholder="What are you looking for?" aria-label="Search">
+                      <button type="submit" class="input-group-text input-group-text-btn rounded-0 rounded-start-0 shadow-none bg-white">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                </form>
+              </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+      <section class="menu-sec py-lg-5 py-4 modal-page">
+        <div class="container-lg container-fluid">
+          <div class="sec-intro-wrapper">
+            <h1 class="display-4 fw-bold text-uppercase text-center">
+              Popup
+            </h1>
+          </div>
+          <div class="cards-wrapper py-4">
+            <div class="button-wrapper text-center">
+              <button id="triggerPopup" class="popup_btn btn theme-btn">Open Popup</button>
+            </div>
+            <div id="backdropPopup" class="backdrop_popup"></div>
+            <div class="popup">
+              <div class="popup-wrapper">
+                <div class="popup-content">
+                  <div class="popup-header">
+                    <h5 class="popup-heading">Popup Header</h5>
+                    <button class="btn popup-close-btn">X</button>
+                  </div>
+                  <div class="popup-body">
+                    <h1>Look at me!</h1>
+                    <p>I'm a pop up dialog!</p>
+                  </div>
+                  <div class="popup-footer">
+                    <button class="btn popup-close-btn theme-btn">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+
+    <!-- footer -->
+    <footer>
+      <p class="text-muted small text-center m-0">© <span id="year">2024</span> <a href="./index.html">BeauCode</a>. All rights reserved.</p>
+    </footer>
+    <script src="../assets/js/jquery-3.5.0.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/custom.js"></script>
+
+    <script>
+      const openButton = document.getElementById('triggerPopup');
+      const closeButton = document.querySelectorAll('.popup-close-btn');
+      const backdrop = document.getElementById('backdropPopup')
+
+      function toggleModal() {
+        const modalDiv = document.querySelector('.popup');
+        modalDiv.classList.toggle('show');
+        backdrop.classList.toggle('show');
+      }
+
+      openButton.addEventListener('click', toggleModal);
+      closeButton.forEach(clBtn => {clBtn.addEventListener('click', toggleModal)});
+    </script>
+</body>
+</html>
